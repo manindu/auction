@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.centicbids">
+  package="dev.manindu.centicbids">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

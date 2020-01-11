@@ -1,4 +1,4 @@
-package com.centicbids;
+package dev.manindu.centicbids;
 
 import com.facebook.react.ReactActivity;
 

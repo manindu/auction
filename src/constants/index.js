@@ -1,5 +1,5 @@
 export const theme = {
-  primaryColor: '#F4511E',
+  primaryColor: '#D84315',
   errorColor: '#d32f2f',
   controlBorderColor: '#e0e0e0',
   white: 'white',
