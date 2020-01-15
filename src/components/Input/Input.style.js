@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
   required: {
     color: theme.errorColor,
   },
+  errorText: {
+    fontSize: 10,
+    color: theme.errorColor,
+  },
 });
 
 export default styles;

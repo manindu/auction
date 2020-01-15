@@ -6,8 +6,9 @@ export default StyleSheet.create({
     width: '100%',
     height: 60,
     backgroundColor: theme.white,
+    paddingHorizontal: 15,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -17,7 +18,7 @@ export default StyleSheet.create({
     elevation: 2,
   },
   title: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     color: theme.primaryColor,
   },

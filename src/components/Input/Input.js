@@ -16,6 +16,7 @@ const Input = ({
   autoCapitalize,
   secureTextEntry,
 }) => {
+  console.log(error);
   return (
     <View id={id} style={[styles.container, style]}>
       {label ? (
@@ -37,6 +38,7 @@ const Input = ({
         autoCapitalize={autoCapitalize}
         secureTextEntry={secureTextEntry}
       />
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );
 };
