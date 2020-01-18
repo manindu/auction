@@ -9,6 +9,7 @@ const SignIn = ({ navigation }) => {
   const auth = useAuth();
 
   const onPressSignIn = () => {
+    console.log('j');
     auth.signin('manindu90@gmail.com', 'qazwsxedc');
   };
 

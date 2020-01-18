@@ -1,38 +1,39 @@
-import differenceInYears from 'date-fns/differenceInYears';
-import differenceInMonths from 'date-fns/differenceInMonths';
-import differenceInDays from 'date-fns/differenceInCalendarDays';
-import differenceInHours from 'date-fns/differenceInHours';
-import differenceInMinutes from 'date-fns/differenceInMinutes';
-import differenceInSeconds from 'date-fns/differenceInSeconds';
-import addYears from 'date-fns/addYears';
-import addMonths from 'date-fns/addMonths';
-import addDays from 'date-fns/addDays';
-import addHours from 'date-fns/addHours';
-import addMinutes from 'date-fns/addMinutes';
+import moment from 'moment';
+import countdown from 'moment-countdown';
+import Toast from 'react-native-root-toast';
 
 export const getRemainingTime = endDate => {
-  let x = new Date();
-
-  let temp;
-  temp = differenceInYears(endDate, x);
-  let result = `${temp} years `;
-  x = addYears(x, temp);
-  temp = differenceInMonths(endDate, x);
-  result = `${result + temp} months `;
-  x = addMonths(x, temp);
-  temp = differenceInDays(endDate, x);
-  result = `${result + temp} days `;
-  x = addDays(x, temp);
-  temp = differenceInHours(endDate, x);
-  result = `${result + temp} hours `;
-  x = addHours(x, temp);
-  temp = differenceInMinutes(endDate, x);
-  result = `${result + temp} minutes `;
-  x = addMinutes(x, temp);
-  temp = differenceInSeconds(endDate, x);
-  result = `${result + temp} seconds`;
-
-  return result;
+  return moment()
+    .countdown(
+      endDate,
+      countdown.DAYS ||
+        countdown.HOURS ||
+        countdown.MINUTES ||
+        countdown.SECONDS,
+      NaN,
+      4,
+    )
+    .toString();
 };
 
-export const formatDate = () => {};
+export const showToast = message => {
+  return Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: Toast.positions.TOP,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+  });
+};
+
+export const addCommaToNumber = currency => {
+  if (!currency && currency !== 0) return '';
+  if (currency === 0) return 0;
+
+  const str = currency.toString().split('.');
+  if (str[0].length >= 4) {
+    str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  }
+  return str.join('.');
+};

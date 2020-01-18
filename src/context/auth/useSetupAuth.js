@@ -4,12 +4,17 @@ import auth from '@react-native-firebase/auth';
 const useSetupAuth = () => {
   const [user, setUser] = useState(null);
 
-  const signin = async (email, password) => {
+  console.log(user);
+
+  const signin = (email, password) => {
+    console.log(email, password);
     return auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {
+        console.log(response);
         return response.user;
-      });
+      })
+      .catch(err => console.log(err));
   };
 
   const signup = (email, password) => {
@@ -31,7 +36,7 @@ const useSetupAuth = () => {
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(loggedInUser => {
       if (loggedInUser) {
-        setUser(loggedInUser);
+        setUser(loggedInUser._user);
       } else {
         setUser(null);
       }

@@ -4,14 +4,17 @@ import Icon from 'react-native-vector-icons/Feather';
 import PropTypes from 'prop-types';
 import styles from './AuctionItem.style';
 import { theme } from '../../constants';
+import { addCommaToNumber } from '../../helpers';
 
 const AuctionItem = ({
+  item,
   itemName,
   imageUrl,
   timeRemaining,
   lastBid,
   yourBid,
   onPressBidButton,
+  hasUserBid,
 }) => (
   <View style={styles.container}>
     <Image style={styles.image} resizeMode="cover" source={{ uri: imageUrl }} />
@@ -24,7 +27,9 @@ const AuctionItem = ({
       <View style={styles.bidRow}>
         <View style={styles.lastBid}>
           <Text>Last Bid</Text>
-          <Text style={styles.lastBidPrice}>{`$${lastBid}`}</Text>
+          <Text style={styles.lastBidPrice}>
+            {`$${addCommaToNumber(lastBid)}`}
+          </Text>
         </View>
         <View style={styles.yourBid}>
           {yourBid > 0 ? (
@@ -33,9 +38,13 @@ const AuctionItem = ({
               <Text style={styles.yourBidPrice}>{`$${yourBid}`}</Text>
             </>
           ) : (
-            <TouchableOpacity onPress={onPressBidButton}>
+            <TouchableOpacity onPress={() => onPressBidButton(item)}>
               <View style={styles.bidNowButton}>
-                <Text style={styles.bidNowText}>Bid Now</Text>
+                {!hasUserBid ? (
+                  <Text style={styles.bidNowText}>Bid Now</Text>
+                ) : (
+                  <Text>{`$${yourBid}`}</Text>
+                )}
               </View>
             </TouchableOpacity>
           )}
@@ -46,16 +55,19 @@ const AuctionItem = ({
 );
 
 AuctionItem.propTypes = {
+  item: PropTypes.shape({}).isRequired,
   itemName: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   timeRemaining: PropTypes.string.isRequired,
   lastBid: PropTypes.number.isRequired,
   onPressBidButton: PropTypes.func.isRequired,
   yourBid: PropTypes.number,
+  hasUserBid: PropTypes.bool,
 };
 
 AuctionItem.defaultProps = {
   yourBid: 0,
+  hasUserBid: false,
 };
 
 export default AuctionItem;

@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  inputLabel: {},
+  inputLabel: {
+    fontWeight: 'bold',
+  },
   labelContainer: {
     flexDirection: 'row',
     marginBottom: 5,

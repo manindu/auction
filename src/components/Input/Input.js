@@ -16,7 +16,6 @@ const Input = ({
   autoCapitalize,
   secureTextEntry,
 }) => {
-  console.log(error);
   return (
     <View id={id} style={[styles.container, style]}>
       {label ? (
