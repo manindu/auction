@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
+import { showToast } from '../../helpers';
 
 const useSetupAuth = () => {
   const [user, setUser] = useState(null);
 
-  console.log(user);
-
   const signin = (email, password) => {
-    console.log(email, password);
     return auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {
-        console.log(response);
         return response.user;
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        showToast(err.toString());
+      });
   };
 
   const signup = (email, password) => {

@@ -10,6 +10,7 @@ const Input = ({
   onChange,
   onBlur,
   value,
+  defaultValue,
   error,
   style,
   keyboardType,
@@ -36,6 +37,7 @@ const Input = ({
         keyboardType={keyboardType}
         autoCapitalize={autoCapitalize}
         secureTextEntry={secureTextEntry}
+        defaultValue={defaultValue}
       />
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
@@ -54,6 +56,7 @@ Input.propTypes = {
   keyboardType: PropTypes.string,
   autoCapitalize: PropTypes.string,
   secureTextEntry: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Input.defaultProps = {
@@ -64,6 +67,7 @@ Input.defaultProps = {
   keyboardType: 'default',
   autoCapitalize: 'none',
   secureTextEntry: false,
+  defaultValue: '',
 };
 
 export default Input;

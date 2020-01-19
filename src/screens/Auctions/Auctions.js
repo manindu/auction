@@ -106,6 +106,12 @@ const Auctions = () => {
     handleSubmit,
   } = formik;
 
+  const selectedItemBidValue = selectedItem
+    ? getBidAmount(userBids, selectedItem.key)
+    : 0;
+
+  console.log(selectedItem);
+  console.log(selectedItemBidValue);
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Auctions" />
@@ -117,6 +123,9 @@ const Auctions = () => {
             onChange={handleChange('bid')}
             onBlur={handleBlur('bid')}
             value={values.bid}
+            defaultValue={
+              selectedItemBidValue > 0 ? selectedItemBidValue.toString() : ''
+            }
             error={touched.bid && errors.bid && errors.bid.toString()}
             keyboardType="numeric"
             placeholder=""

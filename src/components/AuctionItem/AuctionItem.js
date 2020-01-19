@@ -32,22 +32,27 @@ const AuctionItem = ({
           </Text>
         </View>
         <View style={styles.yourBid}>
-          {yourBid > 0 ? (
-            <>
-              <Text style={styles.yourBidLabel}>Your Bid</Text>
-              <Text style={styles.yourBidPrice}>{`$${yourBid}`}</Text>
-            </>
-          ) : (
-            <TouchableOpacity onPress={() => onPressBidButton(item)}>
-              <View style={styles.bidNowButton}>
-                {!hasUserBid ? (
-                  <Text style={styles.bidNowText}>Bid Now</Text>
-                ) : (
-                  <Text>{`$${yourBid}`}</Text>
-                )}
-              </View>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity onPress={() => onPressBidButton(item)}>
+            <View
+              style={[
+                styles.bidNowButton,
+                hasUserBid && { backgroundColor: theme.primaryColor },
+              ]}
+            >
+              {!hasUserBid ? (
+                <Text style={styles.bidNowText}>Bid Now</Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.bidNowText,
+                    { color: theme.contentHightlight },
+                  ]}
+                >
+                  {`Your Bid $${addCommaToNumber(yourBid)}`}
+                </Text>
+              )}
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
