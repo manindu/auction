@@ -18,6 +18,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* centicbidsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* centicbidsTests.m */; };
+		5F81F9BA23D6321D00D4884E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F81F9B923D6321D00D4884E /* GoogleService-Info.plist */; };
 		9C09864EF70CBEB4ADF61AFE /* libPods-centicbidsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324B69B0366753E75DB9E66 /* libPods-centicbidsTests.a */; };
 		E110D2105C8A62258A397AF5 /* libPods-centicbids-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 810FD82DBB55D45413C1B4B9 /* libPods-centicbids-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		3324B69B0366753E75DB9E66 /* libPods-centicbidsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-centicbidsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33AA64CC1EA9594027F2083C /* Pods-centicbids-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-centicbids-tvOS.release.xcconfig"; path = "Target Support Files/Pods-centicbids-tvOS/Pods-centicbids-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		39EF3368C6DBA03D70480765 /* Pods-centicbids.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-centicbids.debug.xcconfig"; path = "Target Support Files/Pods-centicbids/Pods-centicbids.debug.xcconfig"; sourceTree = "<group>"; };
+		5F81F9B923D6321D00D4884E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		810FD82DBB55D45413C1B4B9 /* libPods-centicbids-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-centicbids-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CD6B64C362053E0AE67F71 /* Pods-centicbids-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-centicbids-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-centicbids-tvOS/Pods-centicbids-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AD65CD5850B0395A057F183A /* libPods-centicbids.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-centicbids.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				5F81F9B923D6321D00D4884E /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -340,6 +343,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				5F81F9BA23D6321D00D4884E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

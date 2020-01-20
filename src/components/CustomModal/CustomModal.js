@@ -1,6 +1,9 @@
 import React from 'react';
-import { Modal } from 'react-native';
+import { Modal, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/Feather';
+import styles from './CustomModal.style';
+import { theme } from '../../constants';
 
 const CustomModal = ({ visible, children, onRequestClose }) => (
   <Modal
@@ -8,6 +11,11 @@ const CustomModal = ({ visible, children, onRequestClose }) => (
     visible={visible}
     onRequestClose={onRequestClose}
   >
+    <View style={styles.headerContainer}>
+      <TouchableOpacity style={styles.touchable} onPress={onRequestClose}>
+        <Icon size={28} color={theme.black} name="x" />
+      </TouchableOpacity>
+    </View>
     {children}
   </Modal>
 );

@@ -30,6 +30,22 @@ const AuctionStack = createStackNavigator({
   },
 });
 
+const MyBidStack = createStackNavigator({
+  MyBidsScreen: {
+    screen: MyBids,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  ItemDetails: {
+    screen: ItemDetail,
+    navigationOptions: {
+      headerTransparent: true,
+      title: '',
+    },
+  },
+});
+
 const AppStack = createBottomTabNavigator(
   {
     AuctionsScreen: {
@@ -47,7 +63,7 @@ const AppStack = createBottomTabNavigator(
       },
     },
     MyBidsScreen: {
-      screen: MyBids,
+      screen: MyBidStack,
       navigationOptions: {
         title: 'My Bids',
         tabBarIcon: ({ tintColor }) => (

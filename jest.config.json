@@ -1,0 +1,21 @@
+{
+  "preset": "react-native",
+  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "transform": {
+    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+  },
+  "setupFilesAfterEnv": [
+    "<rootDir>/jest.setup.js"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!(jest-)?react-native)"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "/jest"
+  ]
+}
