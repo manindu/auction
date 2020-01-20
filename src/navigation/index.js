@@ -4,13 +4,36 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/Feather';
-import { Auctions, SignIn, AppInit, Profile, MyBids } from '../screens';
+import {
+  Auctions,
+  SignIn,
+  AppInit,
+  Profile,
+  MyBids,
+  ItemDetail,
+} from '../screens';
 import { theme } from '../constants';
+
+const AuctionStack = createStackNavigator({
+  AuctionsScreen: {
+    screen: Auctions,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  ItemDetails: {
+    screen: ItemDetail,
+    navigationOptions: {
+      headerTransparent: true,
+      title: '',
+    },
+  },
+});
 
 const AppStack = createBottomTabNavigator(
   {
     AuctionsScreen: {
-      screen: Auctions,
+      screen: AuctionStack,
       navigationOptions: {
         title: 'Auction',
         headerTitle: 'Auction',
@@ -58,6 +81,7 @@ const AppStack = createBottomTabNavigator(
     },
   },
 );
+
 const AuthStack = createStackNavigator(
   {
     SignInScreen: SignIn,

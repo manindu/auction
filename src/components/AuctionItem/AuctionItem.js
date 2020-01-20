@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import PropTypes from 'prop-types';
 import styles from './AuctionItem.style';
@@ -15,11 +21,20 @@ const AuctionItem = ({
   yourBid,
   onPressBidButton,
   hasUserBid,
+  onPress,
 }) => (
   <View style={styles.container}>
-    <Image style={styles.image} resizeMode="cover" source={{ uri: imageUrl }} />
+    <TouchableWithoutFeedback onPress={() => onPress(item)}>
+      <Image
+        style={styles.image}
+        resizeMode="cover"
+        source={{ uri: imageUrl }}
+      />
+    </TouchableWithoutFeedback>
     <View style={styles.infoContainer}>
-      <Text style={styles.itemName}>{itemName}</Text>
+      <Text onPress={() => onPress(item)} style={styles.itemName}>
+        {itemName}
+      </Text>
       <View style={styles.timeContainer}>
         <Icon size={14} color={theme.fontColor} name="clock" />
         <Text style={styles.remainingTime}>{timeRemaining}</Text>
@@ -48,7 +63,7 @@ const AuctionItem = ({
                     { color: theme.contentHightlight },
                   ]}
                 >
-                  {`Your Bid $${addCommaToNumber(yourBid)}`}
+                  {`Your bid $${addCommaToNumber(yourBid)}`}
                 </Text>
               )}
             </View>
@@ -66,6 +81,7 @@ AuctionItem.propTypes = {
   timeRemaining: PropTypes.string.isRequired,
   lastBid: PropTypes.number.isRequired,
   onPressBidButton: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
   yourBid: PropTypes.number,
   hasUserBid: PropTypes.bool,
 };

@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../context/auth';
+import { theme } from '../../constants';
+import styles from './AppInit.styles';
+
+const SCREEN_NAVIGATION_DELAY = 1500;
 
 const AppInit = ({ navigation }) => {
   const auth = useAuth();
 
-  console.log(auth);
-
   const initAuth = () => {
     if (auth.user) {
-      navigation.navigate('App');
+      setTimeout(() => {
+        navigation.navigate('App');
+      }, SCREEN_NAVIGATION_DELAY);
     } else {
-      navigation.navigate('Auth');
+      setTimeout(() => {
+        navigation.navigate('Auth');
+      }, SCREEN_NAVIGATION_DELAY);
     }
   };
 
@@ -21,15 +27,9 @@ const AppInit = ({ navigation }) => {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <ActivityIndicator />
+    <View style={styles.container}>
+      <Text style={styles.nameText}>CenticBids</Text>
+      <ActivityIndicator color={theme.primaryColor} />
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import firestore from '@react-native-firebase/firestore';
-import AppContainer from './src/navigation/config';
+import AppContainer from './src/navigation';
 import { AuthProvider } from './src/context/auth/AuthContext';
 
 const App = () => {
