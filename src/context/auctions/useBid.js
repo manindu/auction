@@ -53,24 +53,37 @@ const useBid = () => {
       });
   };
 
-  const getUserBidItems = (userId, itemIds) => {
-    const items = [];
-
-    itemIds.forEach(itemId => {
-      firestore()
-        .collection('items')
-        .doc(itemId)
-        .onSnapshot(doc => {
-          if (doc.exists) {
-            items.push({
-              ...doc.data(),
-              key: doc.id,
-            });
-          }
+  const getUserBidItems = userId => {
+    return firestore()
+      .collection('bids')
+      .where('userId', '==', userId)
+      .onSnapshot(querySnapshot => {
+        const items = querySnapshot.docs.map(documentSnapshot => {
+          return {
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          };
         });
-    });
 
-    setUserBidItems(items);
+        firestore()
+          .collection('items')
+          .where(
+            'itemId',
+            'in',
+            items.map(i => i.itemId),
+          )
+          .onSnapshot(snapshot => {
+            const itemList = snapshot.docs.map(documentSnapshot => {
+              return {
+                ...documentSnapshot.data(),
+                key: documentSnapshot.id,
+              };
+            });
+
+            setUserBidItems(itemList);
+            toggleLoading(false);
+          });
+      });
   };
 
   return {

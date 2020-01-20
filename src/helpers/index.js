@@ -37,3 +37,11 @@ export const addCommaToNumber = currency => {
   }
   return str.join('.');
 };
+
+export const getBidAmount = (userBids, itemId) => {
+  const item = userBids.find(bid => bid.itemId === itemId);
+  if (item) {
+    return item.bid;
+  }
+  return 0;
+};

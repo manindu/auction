@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, FlatList, Text, View } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,27 +9,20 @@ import {
   CustomModal,
   Input,
   Button,
-  InputModal,
+  ContentContainer,
 } from '../../components';
 import styles from './Auctions.style';
 import useAuctionItems from '../../context/auctions/useAuctionItems';
-import { getRemainingTime } from '../../helpers';
+import { getRemainingTime, getBidAmount } from '../../helpers';
 import { useAuth } from '../../context/auth';
 import useBid from '../../context/auctions/useBid';
-
-const getBidAmount = (userBids, itemId) => {
-  const item = userBids.find(bid => bid.itemId === itemId);
-  if (item) {
-    return item.bid;
-  }
-  return 0;
-};
+import useInterval from '../../context/useInterval';
 
 const Auctions = ({ navigation }) => {
-  const [timeElapsed, setTimeElapsed] = useState(0);
   const [selectedItem, setSelectedItem] = useState({});
   const [myBidModalVisible, toggleMyBidModal] = useState(false);
 
+  useInterval();
   const auctions = useAuctionItems();
   const { user } = useAuth();
   const { placeBid, getUserBids, userBids } = useBid();
@@ -37,16 +30,6 @@ const Auctions = ({ navigation }) => {
   const userBidItemIds = userBids.map(bid => bid.itemId);
 
   const { itemList } = auctions;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeElapsed(prevTime => prevTime + 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     const unsubscribe = getUserBids(user.uid);
@@ -128,17 +111,17 @@ const Auctions = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Auctions" />
-      {/*  <CustomModal visible={myBidModalVisible} onRequestClose={toggleBidModal}>
-        <View style={styles.bidAmountContainer}>
+      <CustomModal visible={myBidModalVisible} onRequestClose={toggleBidModal}>
+        <ContentContainer>
           <Input
             id="bid"
             label="Your Bid"
             onChange={handleChange('bid')}
             onBlur={handleBlur('bid')}
-            value={values.bid}
             defaultValue={
               selectedItemBidValue > 0 ? selectedItemBidValue.toString() : ''
             }
+            value={values.bid}
             error={touched.bid && errors.bid && errors.bid.toString()}
             keyboardType="numeric"
             placeholder=""
@@ -148,21 +131,8 @@ const Auctions = ({ navigation }) => {
             onClick={handleSubmit}
             disabled={!isValid}
           />
-        </View>
-          </CustomModal> */}
-      <InputModal
-        visible={myBidModalVisible}
-        onRequestClose={toggleBidModal}
-        onChange={handleChange('bid')}
-        onBlur={handleBlur('bid')}
-        defaultValue={
-          selectedItemBidValue > 0 ? selectedItemBidValue.toString() : ''
-        }
-        value={values.bid}
-        error={touched.bid && errors.bid ? errors.bid.toString() : ''}
-        onButtonPress={handleSubmit}
-        disabled={!isValid}
-      />
+        </ContentContainer>
+      </CustomModal>
       <FlatList
         contentContainerStyle={styles.listContentContainer}
         data={itemList}

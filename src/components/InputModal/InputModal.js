@@ -22,7 +22,6 @@ const InputModal = ({
   placeholder,
   buttonLabel,
 }) => {
-  console.log(defaultValue.toString());
   return (
     <CustomModal visible={visible} onRequestClose={onRequestClose}>
       <View style={styles.bidAmountContainer}>

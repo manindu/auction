@@ -21,3 +21,9 @@ export const theme = {
   },
   borderRadius: 8,
 };
+
+export const profileFields = {
+  firstName: 'firstName',
+  lastName: 'lastName',
+  displayName: 'displayName',
+};

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 
 const useAuctionItems = () => {

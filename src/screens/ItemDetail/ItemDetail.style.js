@@ -41,13 +41,13 @@ export default StyleSheet.create({
   },
   latestBid: {
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 14,
   },
   lastBidContainer: {
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 15,
+    marginVertical: 10,
   },
   buttonContainer: {
     marginTop: 20,
